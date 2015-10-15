@@ -1,18 +1,15 @@
-package com.coolerfall.widget.calendar;
+package com.coolerfall.widget.lunar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.DrawableRes;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.cooler.ui.R;
 
 import java.util.Calendar;
 
@@ -32,6 +29,8 @@ public class MonthView extends View {
 	private float mLunarTextSize;
 	private float mLunarOffset;
 	private float mCircleRadius;
+
+	private static final int LIGHT_GRAY = 0xffe0e0e0;
 
 	private Month mMonth;
 	private LunarView mLunarView;
@@ -213,12 +212,18 @@ public class MonthView extends View {
 	/* draw circle for selected day */
 	private void drawBackground(Canvas canvas, Rect rect, MonthDay day, int xIndex, int yIndex) {
 		if (day.isToday()) {
-			Drawable drawable = getDrawable(R.drawable.today_bg);
-			drawable.setBounds(rect);
-			drawable.draw(canvas);
+			Drawable background = mLunarView.getTodayBackground();
+			if (background == null) {
+				drawRing(canvas, rect);
+			} else {
+				background.setBounds(rect);
+				background.draw(canvas);
+			}
+
 			return;
 		}
 
+		/* not today was selected */
 		if (mSelectedIndex == -1 && day.isFirstDay()) {
 			mSelectedIndex = xIndex * DAYS_IN_WEEK + yIndex;
 		}
@@ -228,17 +233,16 @@ public class MonthView extends View {
 			return;
 		}
 
-		mPaint.setColor(0xffe0e0e0);
+		mPaint.setColor(LIGHT_GRAY);
 		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius, mPaint);
 	}
 
-	@SuppressWarnings("deprecation")
-	protected Drawable getDrawable(@DrawableRes int resId) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			return getResources().getDrawable(resId);
-		} else {
-			return getResources().getDrawable(resId);
-		}
+	/* draw ring as background of today */
+	private void drawRing(Canvas canvas, Rect rect) {
+		mPaint.setColor(Color.RED);
+		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius, mPaint);
+		mPaint.setColor(LIGHT_GRAY);
+		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius - 4, mPaint);
 	}
 
 	/* handle date click event */
@@ -288,10 +292,11 @@ public class MonthView extends View {
 	 * @param day selected day
 	 */
 	protected void setSelectedDay(int day) {
-		if (mMonth.isMonthOfToday()) {
+		if (mMonth.isMonthOfToday() && day == 0) {
 			mSelectedIndex = mMonth.getIndexOfToday();
 		} else {
-			mSelectedIndex = mMonth.getIndexOfDayInCurMonth(day);
+			int selectedDay = day == 0 ? 1 : day;
+			mSelectedIndex = mMonth.getIndexOfDayInCurMonth(selectedDay);
 		}
 
 		invalidate();

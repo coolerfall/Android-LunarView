@@ -1,4 +1,4 @@
-package com.coolerfall.widget.calendar;
+package com.coolerfall.widget.lunar;
 
 import android.os.Parcel;
 import android.os.Parcelable;

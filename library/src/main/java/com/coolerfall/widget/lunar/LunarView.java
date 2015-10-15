@@ -1,7 +1,8 @@
-package com.coolerfall.widget.calendar;
+package com.coolerfall.widget.lunar;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -24,6 +25,7 @@ public class LunarView extends LinearLayout {
 	private int mLunarTextColor = Color.GRAY;
 	private int mHightlistColor = 0xff03a9f4;
 	private int mUncheckableColor = 0xffb0b0b0;
+	private Drawable mTodayBackground;
 
 	private ViewPager mPager;
 	private MonthPagerAdapter mAdapter;
@@ -108,7 +110,7 @@ public class LunarView extends LinearLayout {
 				return;
 			}
 
-			mAdapter.setSelectedDay(position, 1);
+			mAdapter.resetSelectedDay(position);
 		}
 
 		@Override
@@ -123,6 +125,15 @@ public class LunarView extends LinearLayout {
 			return getResources().getColor(resId, null);
 		} else {
 			return getResources().getColor(resId);
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	private Drawable getDrawable(@DrawableRes int resId) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			return getResources().getDrawable(resId, null);
+		} else {
+			return getResources().getDrawable(resId);
 		}
 	}
 
@@ -173,6 +184,15 @@ public class LunarView extends LinearLayout {
 	 */
 	protected int getUnCheckableColor() {
 		return mUncheckableColor;
+	}
+
+	/**
+	 * Get the background of today.
+	 *
+	 * @return background drawable
+	 */
+	protected Drawable getTodayBackground() {
+		return mTodayBackground;
 	}
 
 	/**
@@ -229,8 +249,13 @@ public class LunarView extends LinearLayout {
 		mHightlistColor = getColor(resId);
 	}
 
+	/**
+	 * Set the background drawable of today.
+	 *
+	 * @param resId drawable resource id
+	 */
 	public void setTodayBackground(@DrawableRes int resId) {
-
+		mTodayBackground = getDrawable(resId);
 	}
 
 	/**
@@ -323,5 +348,17 @@ public class LunarView extends LinearLayout {
 		Calendar today = Calendar.getInstance();
 		today.setTimeInMillis(System.currentTimeMillis());
 		showMonth(mAdapter.getIndexOfCurrentMonth(), today.get(Calendar.DAY_OF_MONTH));
+	}
+
+	/**
+	 * Set the range of date.
+	 *
+	 * @param minYear min year
+	 * @param maxYear max year
+	 */
+	public void setDateRange(int minYear, int maxYear) {
+		Month min = new Month(minYear, 0, 1);
+		Month max = new Month(maxYear, 11, 1);
+		mAdapter.setDateRange(min, max);
 	}
 }

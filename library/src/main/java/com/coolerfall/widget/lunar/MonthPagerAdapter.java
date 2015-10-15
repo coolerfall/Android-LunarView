@@ -1,4 +1,4 @@
-package com.coolerfall.widget.calendar;
+package com.coolerfall.widget.lunar;
 
 import android.content.Context;
 import android.support.v4.util.SparseArrayCompat;
@@ -31,19 +31,14 @@ public class MonthPagerAdapter extends PagerAdapter {
 	 * @param context   the context to use
 	 * @param lunarView {@link LunarView}
 	 */
-	public MonthPagerAdapter(Context context, LunarView lunarView) {
+	protected MonthPagerAdapter(Context context, LunarView lunarView) {
 		mContext = context;
 		mLunarView = lunarView;
 
 		mMinMonth = new Month(1900, 0, 1);
 		mMaxMonth = new Month(2100, 11, 1);
 
-		/* calculate total month */
-		int minYear = mMinMonth.getYear();
-		int minMonth = mMinMonth.getMonth();
-		int maxYear = mMaxMonth.getYear();
-		int maxMonth = mMaxMonth.getMonth();
-		mTotalCount = (maxYear - minYear) * 12 + maxMonth - minMonth;
+		calculateRange(mMinMonth, mMaxMonth);
 	}
 
 	@Override
@@ -101,6 +96,16 @@ public class MonthPagerAdapter extends PagerAdapter {
 		return monthItem;
 	}
 
+	/* calculate month range */
+	private void calculateRange(Month minDate, Month maxDate) {
+		/* calculate total month */
+		int minYear = minDate.getYear();
+		int minMonth = minDate.getMonth();
+		int maxYear = maxDate.getYear();
+		int maxMonth = maxDate.getMonth();
+		mTotalCount = (maxYear - minYear) * 12 + maxMonth - minMonth;
+	}
+
 	/**
 	 * Get the index of month for today.
 	 *
@@ -141,5 +146,25 @@ public class MonthPagerAdapter extends PagerAdapter {
 		}
 
 		monthView.setSelectedDay(selectedDay);
+	}
+
+	/**
+	 * Reset selected day to the first day of month or today.
+	 *
+	 * @param pagerPosition position of pager
+	 */
+	protected void resetSelectedDay(int pagerPosition) {
+		setSelectedDay(pagerPosition, 0);
+	}
+
+	/**
+	 * Set date range of lunar view.
+	 *
+	 * @param minDate min date month
+	 * @param maxDate max date month
+	 */
+	protected void setDateRange(Month minDate, Month maxDate) {
+		calculateRange(minDate, maxDate);
+		notifyDataSetChanged();
 	}
 }

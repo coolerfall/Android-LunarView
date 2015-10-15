@@ -1,5 +1,4 @@
-<manifest package="com.coolerfall.lunar"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="com.coolerfall.widget.lunar">
 
     <application>
     </application>
