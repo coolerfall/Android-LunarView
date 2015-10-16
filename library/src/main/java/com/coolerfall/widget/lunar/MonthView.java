@@ -30,7 +30,7 @@ public class MonthView extends View {
 	private float mLunarOffset;
 	private float mCircleRadius;
 
-	private static final int LIGHT_GRAY = 0xffe0e0e0;
+	private static final int LIGHT_GRAY = 0xffeaeaea;
 
 	private Month mMonth;
 	private LunarView mLunarView;
@@ -84,7 +84,6 @@ public class MonthView extends View {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
-//		int measureHeight = MeasureSpec.getSize(heightMeasureSpec);
 		setMeasuredDimension(measureWidth, (int) (measureWidth * 6f / 7f));
 	}
 
@@ -131,6 +130,8 @@ public class MonthView extends View {
 		if (mMonth.isMonthOfToday()) {
 			mSelectedIndex = mMonth.getIndexOfToday();
 		}
+
+		setBackgroundColor(mLunarView.getMonthBackgroundColor());
 	}
 
 	/* init month region with the width and height of day */
@@ -241,8 +242,8 @@ public class MonthView extends View {
 	private void drawRing(Canvas canvas, Rect rect) {
 		mPaint.setColor(Color.RED);
 		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius, mPaint);
-		mPaint.setColor(LIGHT_GRAY);
-		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius - 4, mPaint);
+		mPaint.setColor(mLunarView.getMonthBackgroundColor());
+		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius - 5, mPaint);
 	}
 
 	/* handle date click event */
@@ -301,6 +302,8 @@ public class MonthView extends View {
 
 		invalidate();
 
-		performDayClick();
+		if ((day == 0 && mLunarView.getShouldPickOnMonthChange()) || day != 0) {
+			performDayClick();
+		}
 	}
 }

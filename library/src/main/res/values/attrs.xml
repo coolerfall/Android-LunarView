@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LunarView">
+        <attr name="todayBackground" format="reference"/>
+        <attr name="monthBackgroundColor" format="color"/>
+        <attr name="weekLabelBackgroundColor" format="color"/>
+        <attr name="solarTextColor" format="color"/>
+        <attr name="lunarTextColor" format="color"/>
+        <attr name="highlightColor" format="color"/>
+        <attr name="uncheckableColor" format="color"/>
+        <attr name="weekLabelPadding" format="dimension"/>
+        <attr name="shouldPickOnMonthChange" format="boolean"/>
+    </declare-styleable>
+
+</resources>

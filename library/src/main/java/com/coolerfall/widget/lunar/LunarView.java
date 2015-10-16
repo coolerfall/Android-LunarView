@@ -1,6 +1,7 @@
 package com.coolerfall.widget.lunar;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -25,7 +26,10 @@ public class LunarView extends LinearLayout {
 	private int mLunarTextColor = Color.GRAY;
 	private int mHightlistColor = 0xff03a9f4;
 	private int mUncheckableColor = 0xffb0b0b0;
+	private int mMonthBackgroundColor = 0xfffafafa;
+	private int mWeekLabelBackgroundColor = 0xfffafafa;
 	private Drawable mTodayBackground;
+	private boolean mShouldPickOnMonthChange = true;
 
 	private ViewPager mPager;
 	private MonthPagerAdapter mAdapter;
@@ -43,7 +47,7 @@ public class LunarView extends LinearLayout {
 
 	public LunarView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		init();
+		init(attrs);
 	}
 
 	@Override
@@ -64,7 +68,19 @@ public class LunarView extends LinearLayout {
 	}
 
 	/* init lunar view */
-	private void init() {
+	private void init(AttributeSet attrs) {
+		/* get custom attrs */
+		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.LunarView);
+		mMonthBackgroundColor = a.getColor(R.styleable.LunarView_monthBackgroundColor, mMonthBackgroundColor);
+		mWeekLabelBackgroundColor = a.getColor(R.styleable.LunarView_monthBackgroundColor, mWeekLabelBackgroundColor);
+		mSolarTextColor = a.getColor(R.styleable.LunarView_solarTextColor, mSolarTextColor);
+		mLunarTextColor = a.getColor(R.styleable.LunarView_lunarTextColor, mLunarTextColor);
+		mHightlistColor = a.getColor(R.styleable.LunarView_highlightColor, mHightlistColor);
+		mUncheckableColor = a.getColor(R.styleable.LunarView_uncheckableColor, mUncheckableColor);
+		mTodayBackground = a.getDrawable(R.styleable.LunarView_todayBackground);
+		mShouldPickOnMonthChange = a.getBoolean(R.styleable.LunarView_shouldPickOnMonthChange, mShouldPickOnMonthChange);
+		a.recycle();
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			/* if we're on good Android versions, turn off clipping for cool effects */
 			setClipToPadding(false);
@@ -79,6 +95,7 @@ public class LunarView extends LinearLayout {
 		setOrientation(VERTICAL);
 
 		mWeekLabelView = new WeekLabelView(getContext());
+		mWeekLabelView.setBackgroundColor(mWeekLabelBackgroundColor);
 		addView(mWeekLabelView);
 
 		mPager = new ViewPager(getContext());
@@ -97,6 +114,7 @@ public class LunarView extends LinearLayout {
 		});
 	}
 
+	/* page change listener */
 	private ViewPager.OnPageChangeListener mPageListener = new ViewPager.OnPageChangeListener() {
 		@Override
 		public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -144,10 +162,19 @@ public class LunarView extends LinearLayout {
 		/**
 		 * Invoked when date picked.
 		 *
-		 * @param view {@link LunarView}
-		 * @param day  {@link MonthDay}
+		 * @param view     {@link LunarView}
+		 * @param monthDay {@link MonthDay}
 		 */
-		void onDatePick(LunarView view, MonthDay day);
+		void onDatePick(LunarView view, MonthDay monthDay);
+	}
+
+	/**
+	 * Get the color of month view background.
+	 *
+	 * @return color of month background
+	 */
+	protected int getMonthBackgroundColor() {
+		return mMonthBackgroundColor;
 	}
 
 	/**
@@ -193,6 +220,15 @@ public class LunarView extends LinearLayout {
 	 */
 	protected Drawable getTodayBackground() {
 		return mTodayBackground;
+	}
+
+	/**
+	 * Auto pick date when month changed or not.
+	 *
+	 * @return true or false
+	 */
+	protected boolean getShouldPickOnMonthChange() {
+		return mShouldPickOnMonthChange;
 	}
 
 	/**
@@ -264,7 +300,7 @@ public class LunarView extends LinearLayout {
 	 *
 	 * @param l date pick listner
 	 */
-	public void setOnDateClickListener(OnDatePickListener l) {
+	public void setOnDatePickListener(OnDatePickListener l) {
 		mOnDatePickListener = l;
 	}
 

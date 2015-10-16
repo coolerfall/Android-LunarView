@@ -1,4 +1,7 @@
 <resources>
+
     <string name="app_name">Android-LunarView</string>
     <string name="action_settings">Settings</string>
+    <string name="main_btn_today">Today</string>
+
 </resources>

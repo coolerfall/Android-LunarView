@@ -49,8 +49,8 @@ public class MonthPagerAdapter extends PagerAdapter {
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		MonthView monthView = new MonthView(mContext, getItem(position), mLunarView);
-		int selectedDay = mSelectedDayCache.get(position);
-		if (selectedDay != 0) {
+		int selectedDay = mSelectedDayCache.get(position, -1);
+		if (selectedDay != -1) {
 			monthView.setSelectedDay(selectedDay);
 			mSelectedDayCache.removeAt(mSelectedDayCache.indexOfKey(position));
 		}
@@ -164,6 +164,8 @@ public class MonthPagerAdapter extends PagerAdapter {
 	 * @param maxDate max date month
 	 */
 	protected void setDateRange(Month minDate, Month maxDate) {
+		mMinMonth = minDate;
+		mMaxMonth = maxDate;
 		calculateRange(minDate, maxDate);
 		notifyDataSetChanged();
 	}
