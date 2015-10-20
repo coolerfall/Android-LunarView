@@ -39,6 +39,8 @@ public class WeekLabelView extends View {
 		for (int i = 0; i < DAYS_IN_WEEK; i++) {
 			mWeekRegion[i].set(i * itemWidth, 0, (i + 1) * itemWidth, h);
 		}
+
+		mPaint.setTextSize(w / 25f);
 	}
 
 	@Override
@@ -67,7 +69,6 @@ public class WeekLabelView extends View {
 	private void init() {
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.LINEAR_TEXT_FLAG);
 		mPaint.setTextAlign(Paint.Align.CENTER);
-		mPaint.setTextSize(40);
 		mPaint.setColor(Color.GRAY);
 		setPadding(0, 10, 0, 10);
 
