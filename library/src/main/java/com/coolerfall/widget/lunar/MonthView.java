@@ -185,9 +185,7 @@ public class MonthView extends View {
 		}
 
 		mPaint.setTextSize(mSolarTextSize);
-		Paint.FontMetrics fm = mPaint.getFontMetrics();
-		float centerY = rect.top + rect.height() / 2 - fm.descent + (fm.descent - fm.ascent) / 2;
-		canvas.drawText(monthDay.getSolarDay(), rect.exactCenterX(), centerY, mPaint);
+		canvas.drawText(monthDay.getSolarDay(), rect.exactCenterX(), rect.exactCenterY(), mPaint);
 	}
 
 	/* draw lunar text in month view */
@@ -205,9 +203,7 @@ public class MonthView extends View {
 		}
 
 		mPaint.setTextSize(mLunarTextSize);
-		Paint.FontMetrics fm = mPaint.getFontMetrics();
-		float centerY = rect.top + rect.height() / 2 - fm.descent + (fm.descent - fm.ascent) / 2;
-		canvas.drawText(monthDay.getLunarDay(), rect.exactCenterX(), centerY + mLunarOffset, mPaint);
+		canvas.drawText(monthDay.getLunarDay(), rect.exactCenterX(), rect.exactCenterY() + mLunarOffset, mPaint);
 	}
 
 	/* draw circle for selected day */
@@ -243,7 +239,7 @@ public class MonthView extends View {
 		mPaint.setColor(Color.RED);
 		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius, mPaint);
 		mPaint.setColor(mLunarView.getMonthBackgroundColor());
-		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius - 5, mPaint);
+		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius - 4, mPaint);
 	}
 
 	/* handle date click event */
