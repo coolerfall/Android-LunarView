@@ -288,6 +288,24 @@ public class LunarView extends LinearLayout {
 	}
 
 	/**
+	 * Set the text color resource of uncheckable day.
+	 *
+	 * @param resId resource id
+	 */
+	public void setUncheckableColorRes(@ColorRes int resId) {
+		mUncheckableColor = getColor(resId);
+	}
+
+	/**
+	 * Set the text color of uncheckable day.
+	 *
+	 * @param color color
+	 */
+	public void setUncheckableColor(@ColorInt int color) {
+		mUncheckableColor = color;
+	}
+
+	/**
 	 * Set the background drawable of today.
 	 *
 	 * @param resId drawable resource id
