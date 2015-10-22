@@ -185,7 +185,7 @@ public class MonthView extends View {
 		}
 
 		mPaint.setTextSize(mSolarTextSize);
-		canvas.drawText(monthDay.getSolarDay(), rect.exactCenterX(), rect.exactCenterY(), mPaint);
+		canvas.drawText(monthDay.getSolarDay(), rect.centerX(), rect.centerY(), mPaint);
 	}
 
 	/* draw lunar text in month view */
@@ -203,7 +203,7 @@ public class MonthView extends View {
 		}
 
 		mPaint.setTextSize(mLunarTextSize);
-		canvas.drawText(monthDay.getLunarDay(), rect.exactCenterX(), rect.exactCenterY() + mLunarOffset, mPaint);
+		canvas.drawText(monthDay.getLunarDay(), rect.centerX(), rect.centerY() + mLunarOffset, mPaint);
 	}
 
 	/* draw circle for selected day */

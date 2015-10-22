@@ -53,8 +53,7 @@ public class LunarView extends LinearLayout {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
-		int measureHeight = (int) (measureWidth * 6f / 7f) + mWeekLabelView.getMeasuredHeight();
-		setMeasuredDimension(measureWidth, measureHeight);
+		int measureHeight = MeasureSpec.getSize(heightMeasureSpec);
 
 		for (int i = 0; i < getChildCount(); i++) {
 			final View child = getChildAt(i);
@@ -65,6 +64,9 @@ public class LunarView extends LinearLayout {
 				measureHeight, MeasureSpec.EXACTLY);
 			child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
 		}
+
+		measureHeight = (int) (measureWidth * 6f / 7f) + mWeekLabelView.getMeasuredHeight();
+		setMeasuredDimension(measureWidth, measureHeight);
 	}
 
 	/* init lunar view */
