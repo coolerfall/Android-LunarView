@@ -23,7 +23,7 @@ and you can add OnDatePickListener:
 Gradle
 --------
 	
-	compile 'com.coolerfall:android-lunar-view:1.0.0'
+	compile 'com.coolerfall:android-lunar-view:1.0.1'
 
 License
 =======
