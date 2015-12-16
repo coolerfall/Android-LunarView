@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 				String lunarDay = monthDay.getLunar().getLunarDay();
 
 				mTvDate.setText(String.format("%d-%d-%d  %s月%s",
-					year, month, day, lunarMonth, lunarDay));
+					year, month+1, day, lunarMonth, lunarDay));
 			}
 		});
 	}
