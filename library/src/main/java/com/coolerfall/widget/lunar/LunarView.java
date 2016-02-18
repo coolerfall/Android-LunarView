@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
@@ -57,10 +58,8 @@ public class LunarView extends LinearLayout {
 		for (int i = 0; i < getChildCount(); i++) {
 			final View child = getChildAt(i);
 
-			int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(
-				measureWidth, MeasureSpec.EXACTLY);
-			int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
-				measureWidth, MeasureSpec.EXACTLY);
+			int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(measureWidth, MeasureSpec.EXACTLY);
+			int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(measureWidth, MeasureSpec.EXACTLY);
 			child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
 		}
 
@@ -70,16 +69,19 @@ public class LunarView extends LinearLayout {
 
 	/* init lunar view */
 	private void init(AttributeSet attrs) {
-		/* get custom attrs */
+	/* get custom attrs */
 		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.LunarView);
-		mMonthBackgroundColor = a.getColor(R.styleable.LunarView_monthBackgroundColor, mMonthBackgroundColor);
-		mWeekLabelBackgroundColor = a.getColor(R.styleable.LunarView_monthBackgroundColor, mWeekLabelBackgroundColor);
+		mMonthBackgroundColor =
+			a.getColor(R.styleable.LunarView_monthBackgroundColor, mMonthBackgroundColor);
+		mWeekLabelBackgroundColor =
+			a.getColor(R.styleable.LunarView_monthBackgroundColor, mWeekLabelBackgroundColor);
 		mSolarTextColor = a.getColor(R.styleable.LunarView_solarTextColor, mSolarTextColor);
 		mLunarTextColor = a.getColor(R.styleable.LunarView_lunarTextColor, mLunarTextColor);
 		mHightlistColor = a.getColor(R.styleable.LunarView_highlightColor, mHightlistColor);
 		mUncheckableColor = a.getColor(R.styleable.LunarView_uncheckableColor, mUncheckableColor);
 		mTodayBackground = a.getDrawable(R.styleable.LunarView_todayBackground);
-		mShouldPickOnMonthChange = a.getBoolean(R.styleable.LunarView_shouldPickOnMonthChange, mShouldPickOnMonthChange);
+		mShouldPickOnMonthChange =
+			a.getBoolean(R.styleable.LunarView_shouldPickOnMonthChange, mShouldPickOnMonthChange);
 		a.recycle();
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -138,22 +140,14 @@ public class LunarView extends LinearLayout {
 		}
 	};
 
-	@SuppressWarnings("deprecation")
+	/* get color with given color resource id */
 	private int getColor(@ColorRes int resId) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			return getResources().getColor(resId, null);
-		} else {
-			return getResources().getColor(resId);
-		}
+		return ContextCompat.getColor(getContext(), resId);
 	}
 
-	@SuppressWarnings("deprecation")
+	/* get color with given drawable resource id */
 	private Drawable getDrawable(@DrawableRes int resId) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			return getResources().getDrawable(resId, null);
-		} else {
-			return getResources().getDrawable(resId);
-		}
+		return ContextCompat.getDrawable(getContext(), resId);
 	}
 
 	/**
