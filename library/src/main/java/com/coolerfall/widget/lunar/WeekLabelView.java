@@ -14,7 +14,7 @@ import android.view.View;
  * @author Vincent Cheung
  * @since Oct. 13, 2015
  */
-public class WeekLabelView extends View {
+final class WeekLabelView extends View {
 	private static final int DAYS_IN_WEEK = 7;
 	private final Region[] mWeekRegion = new Region[DAYS_IN_WEEK];
 	private static final String[] CHINESE_WEEK = {"日", "一", "二", "三", "四", "五", "六"};

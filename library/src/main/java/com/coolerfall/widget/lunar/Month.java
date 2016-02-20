@@ -13,7 +13,7 @@ import java.util.List;
  * @author Vincent Cheung
  * @since Oct. 12, 2015
  */
-public class Month implements Parcelable {
+class Month implements Parcelable {
 	private static final int DAYS_IN_WEEK = 7;
 
 	private final int mYear;

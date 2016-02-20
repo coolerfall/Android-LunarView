@@ -12,7 +12,7 @@ import java.util.Calendar;
  * @author Vincent Cheung
  * @since Oct. 13, 2015
  */
-public class MonthDay implements Parcelable {
+public final class MonthDay implements Parcelable {
 	protected static final int PREV_MONTH_DAY = 1;
 	protected static final int NEXT_MONTH_DAY = 2;
 

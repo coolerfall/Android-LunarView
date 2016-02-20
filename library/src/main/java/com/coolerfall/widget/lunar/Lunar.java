@@ -11,7 +11,7 @@ import java.util.TimeZone;
  * @author Vincent Cheung
  * @since Aug. 25, 2015
  */
-public class Lunar {
+public final class Lunar {
 	/**
 	 * Lunar information in 200 years from 1900.
 	 * <p>

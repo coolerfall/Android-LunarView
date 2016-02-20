@@ -15,7 +15,7 @@ import java.util.Calendar;
  * @author Vincent Cheung
  * @since Oct. 12, 2015
  */
-public class MonthPagerAdapter extends PagerAdapter {
+final class MonthPagerAdapter extends PagerAdapter {
 	private Context mContext;
 	private LunarView mLunarView;
 	private int mTotalCount;

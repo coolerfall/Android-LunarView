@@ -20,7 +20,7 @@ import java.util.Calendar;
  * @since Oct. 12, 2015
  */
 @SuppressLint("ViewConstructor")
-public class MonthView extends View {
+final class MonthView extends View {
 	private static final int DAYS_IN_WEEK = 7;
 
 	private int mSelectedIndex = -1;
