@@ -69,7 +69,7 @@ public class LunarView extends LinearLayout {
 
 	/* init lunar view */
 	private void init(AttributeSet attrs) {
-	/* get custom attrs */
+		/* get custom attrs */
 		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.LunarView);
 		mMonthBackgroundColor =
 			a.getColor(R.styleable.LunarView_monthBackgroundColor, mMonthBackgroundColor);
