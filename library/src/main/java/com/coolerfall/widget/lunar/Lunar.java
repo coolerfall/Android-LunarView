@@ -8,8 +8,7 @@ import java.util.TimeZone;
 /**
  * Lunar calendar in 200 years from 1900.
  *
- * @author Vincent Cheung
- * @since Aug. 25, 2015
+ * @author Vincent Cheung (coolingfall@gmail.com)
  */
 public final class Lunar {
 	/**
@@ -258,9 +257,9 @@ public final class Lunar {
 	/**
 	 * The constructor of Lunar calendar.
 	 *
-	 * @param year  the year
+	 * @param year the year
 	 * @param month the month
-	 * @param day   the day
+	 * @param day the day
 	 */
 	public Lunar(int year, int month, int day) {
 		setDate(year, month, day);
@@ -453,7 +452,7 @@ public final class Lunar {
 	/**
 	 * Get total days of lunar month in normal case.
 	 *
-	 * @param lunarYear  lunar year
+	 * @param lunarYear lunar year
 	 * @param lunarMonth lunar month
 	 * @return total days
 	 */
@@ -464,12 +463,12 @@ public final class Lunar {
 	/**
 	 * Get Coordinated Universal Time for given params.
 	 *
-	 * @param year  the year to set
+	 * @param year the year to set
 	 * @param month the month to set
-	 * @param day   the day to set
-	 * @param hour  the hour to set
-	 * @param min   the minute to set
-	 * @param sec   the second to set
+	 * @param day the day to set
+	 * @param hour the hour to set
+	 * @param min the minute to set
+	 * @param sec the second to set
 	 * @return Coordinated Universal Time
 	 */
 	private synchronized long getUTC(int year, int month, int day, int hour, int min, int sec) {
@@ -512,7 +511,7 @@ public final class Lunar {
 	 * Get the day of solar terms.
 	 *
 	 * @param solarYear the specified solar year
-	 * @param index     the index of solar terms in {@link #SOLAR_TERM}
+	 * @param index the index of solar terms in {@link #SOLAR_TERM}
 	 * @return the day of solar terms
 	 */
 	private int getSolarTermDay(int solarYear, int index) {
@@ -525,7 +524,7 @@ public final class Lunar {
 	 * Get the month of solar terms.
 	 *
 	 * @param solarYear the specified solar year
-	 * @param index     the index of solar terms in {@link #SOLAR_TERM}
+	 * @param index the index of solar terms in {@link #SOLAR_TERM}
 	 * @return the month of solar terms
 	 */
 	private int getSolarTermMonth(int solarYear, int index) {
@@ -602,9 +601,9 @@ public final class Lunar {
 	/**
 	 * Set date to get lunar data.
 	 *
-	 * @param year  the year
+	 * @param year the year
 	 * @param month the month
-	 * @param day   the day
+	 * @param day the day
 	 */
 	public void setDate(int year, int month, int day) {
 		Calendar calendar = Calendar.getInstance();
@@ -615,9 +614,9 @@ public final class Lunar {
 	/**
 	 * Set lunar date, so then can get GregorianCalendar date.
 	 *
-	 * @param year   lunar year
-	 * @param month  lunar month
-	 * @param day    lunar day
+	 * @param year lunar year
+	 * @param month lunar month
+	 * @param day lunar day
 	 * @param isLeap the month is leap month or not
 	 */
 	public void setLunarDate(int year, int month, int day, boolean isLeap) {
@@ -706,7 +705,7 @@ public final class Lunar {
 	 * Get lunar month in Chinese according to lunar month numeric.
 	 *
 	 * @param lunarMonth lunar month numeric
-	 * @param isLeap     is current month leap or not
+	 * @param isLeap is current month leap or not
 	 * @return lunar month in Chinese
 	 */
 	public String getLunarMonth(int lunarMonth, boolean isLeap) {
