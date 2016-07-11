@@ -11,8 +11,7 @@ import android.view.View;
 /**
  * Display the week label in the top of {@link MonthView}.
  *
- * @author Vincent Cheung
- * @since Oct. 13, 2015
+ * @author Vincent Cheung (coolingfall@gmail.com)
  */
 final class WeekLabelView extends View {
 	private static final int DAYS_IN_WEEK = 7;

@@ -16,8 +16,7 @@ import java.util.Calendar;
 /**
  * Display one month with solar and lunar date on a calendar.
  *
- * @author Vincent Cheung
- * @since Oct. 12, 2015
+ * @author Vincent Cheung (coolingfall@gmail.com)
  */
 @SuppressLint("ViewConstructor")
 final class MonthView extends View {
@@ -30,8 +29,6 @@ final class MonthView extends View {
 	private float mLunarOffset;
 	private float mCircleRadius;
 
-	private static final int LIGHT_GRAY = 0xffeaeaea;
-
 	private Month mMonth;
 	private LunarView mLunarView;
 
@@ -43,7 +40,7 @@ final class MonthView extends View {
 	/**
 	 * The constructor of month view.
 	 *
-	 * @param context   context to use
+	 * @param context context to use
 	 * @param lunarView {@link LunarView}
 	 */
 	public MonthView(Context context, Month month, LunarView lunarView) {
@@ -203,7 +200,8 @@ final class MonthView extends View {
 		}
 
 		mPaint.setTextSize(mLunarTextSize);
-		canvas.drawText(monthDay.getLunarDay(), rect.centerX(), rect.centerY() + mLunarOffset, mPaint);
+		canvas.drawText(monthDay.getLunarDay(), rect.centerX(), rect.centerY() + mLunarOffset,
+			mPaint);
 	}
 
 	/* draw circle for selected day */
@@ -230,7 +228,7 @@ final class MonthView extends View {
 			return;
 		}
 
-		mPaint.setColor(LIGHT_GRAY);
+		mPaint.setColor(mLunarView.getCheckedDayBackgroundColor());
 		canvas.drawCircle(rect.centerX(), rect.centerY(), mCircleRadius, mPaint);
 	}
 

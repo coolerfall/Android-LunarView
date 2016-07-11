@@ -12,8 +12,7 @@ import java.util.Calendar;
 /**
  * A pager adapter for month, used in {@link LunarView}.
  *
- * @author Vincent Cheung
- * @since Oct. 12, 2015
+ * @author Vincent Cheung (coolingfall@gmail.com)
  */
 final class MonthPagerAdapter extends PagerAdapter {
 	private Context mContext;

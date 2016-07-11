@@ -10,8 +10,7 @@ import java.util.List;
 /**
  * Representation of a month on a calendar.
  *
- * @author Vincent Cheung
- * @since Oct. 12, 2015
+ * @author Vincent Cheung (coolingfall@gmail.com)
  */
 class Month implements Parcelable {
 	private static final int DAYS_IN_WEEK = 7;
@@ -35,9 +34,9 @@ class Month implements Parcelable {
 	/**
 	 * The constructor for month.
 	 *
-	 * @param year  year
+	 * @param year year
 	 * @param month month
-	 * @param day   day of month
+	 * @param day day of month
 	 */
 	protected Month(int year, int month, int day) {
 		mYear = year;
