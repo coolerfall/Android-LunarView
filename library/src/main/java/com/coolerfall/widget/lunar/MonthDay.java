@@ -7,10 +7,9 @@ import android.text.TextUtils;
 import java.util.Calendar;
 
 /**
- * Represatation one day in a month.
+ * Representation one day in a month.
  *
- * @author Vincent Cheung
- * @since Oct. 13, 2015
+ * @author Vincent Cheung (coolingfall@gmail.com)
  */
 public final class MonthDay implements Parcelable {
 	protected static final int PREV_MONTH_DAY = 1;
@@ -21,7 +20,6 @@ public final class MonthDay implements Parcelable {
 	private boolean mIsHoliday;
 	private boolean mIsWeekend;
 	private boolean mIsCheckable = true;
-	private boolean mIsFirstDay;
 	private boolean mIsToday;
 	private int mDayFlag;
 	private Calendar mCalendar;
@@ -135,8 +133,7 @@ public final class MonthDay implements Parcelable {
 	 * @return true if was first day, otherwise return false
 	 */
 	protected boolean isFirstDay() {
-		mIsFirstDay = mCalendar.get(Calendar.DAY_OF_MONTH) == 1;
-		return mIsFirstDay && mIsCheckable;
+		return mCalendar.get(Calendar.DAY_OF_MONTH) == 1 && mIsCheckable;
 	}
 
 	/**

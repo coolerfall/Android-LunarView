@@ -19,8 +19,7 @@ import java.util.Calendar;
 /**
  * This class is a calendar widget for displaying and selecting dates.
  *
- * @author Vincent Cheung
- * @since Oct. 12, 2015
+ * @author Vincent Cheung (coolingfall@gmail.com)
  */
 public class LunarView extends LinearLayout {
 	private int mSolarTextColor = 0xff454545;
@@ -29,6 +28,7 @@ public class LunarView extends LinearLayout {
 	private int mUncheckableColor = 0xffb0b0b0;
 	private int mMonthBackgroundColor = 0xfffafafa;
 	private int mWeekLabelBackgroundColor = 0xfffafafa;
+	private int checkedDayBackgroundColor = 0xffeaeaea;
 	private Drawable mTodayBackground;
 	private boolean mShouldPickOnMonthChange = true;
 
@@ -58,8 +58,10 @@ public class LunarView extends LinearLayout {
 		for (int i = 0; i < getChildCount(); i++) {
 			final View child = getChildAt(i);
 
-			int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(measureWidth, MeasureSpec.EXACTLY);
-			int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(measureWidth, MeasureSpec.EXACTLY);
+			int childWidthMeasureSpec =
+				MeasureSpec.makeMeasureSpec(measureWidth, MeasureSpec.EXACTLY);
+			int childHeightMeasureSpec =
+				MeasureSpec.makeMeasureSpec(measureWidth, MeasureSpec.EXACTLY);
 			child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
 		}
 
@@ -80,6 +82,8 @@ public class LunarView extends LinearLayout {
 		mHightlistColor = a.getColor(R.styleable.LunarView_highlightColor, mHightlistColor);
 		mUncheckableColor = a.getColor(R.styleable.LunarView_uncheckableColor, mUncheckableColor);
 		mTodayBackground = a.getDrawable(R.styleable.LunarView_todayBackground);
+		checkedDayBackgroundColor =
+			a.getColor(R.styleable.LunarView_checkedDayBackgroundColor, checkedDayBackgroundColor);
 		mShouldPickOnMonthChange =
 			a.getBoolean(R.styleable.LunarView_shouldPickOnMonthChange, mShouldPickOnMonthChange);
 		a.recycle();
@@ -157,7 +161,7 @@ public class LunarView extends LinearLayout {
 		/**
 		 * Invoked when date picked.
 		 *
-		 * @param view     {@link LunarView}
+		 * @param view {@link LunarView}
 		 * @param monthDay {@link MonthDay}
 		 */
 		void onDatePick(LunarView view, MonthDay monthDay);
@@ -215,6 +219,15 @@ public class LunarView extends LinearLayout {
 	 */
 	protected Drawable getTodayBackground() {
 		return mTodayBackground;
+	}
+
+	/**
+	 * Get the color of checked day.
+	 *
+	 * @return color of checked day
+	 */
+	int getCheckedDayBackgroundColor() {
+		return checkedDayBackgroundColor;
 	}
 
 	/**
@@ -372,7 +385,7 @@ public class LunarView extends LinearLayout {
 	/**
 	 * Go to the month with specified year and month.
 	 *
-	 * @param year  the specified year
+	 * @param year the specified year
 	 * @param month the specified month
 	 */
 	public void goToMonth(int year, int month) {
@@ -382,9 +395,9 @@ public class LunarView extends LinearLayout {
 	/**
 	 * Go to the month with specified year, month and day.
 	 *
-	 * @param year  the specified year
+	 * @param year the specified year
 	 * @param month the specified month
-	 * @param day   the specified day
+	 * @param day the specified day
 	 */
 	public void goToMonthDay(int year, int month, int day) {
 		showMonth(mAdapter.getIndexOfMonth(year, month), day);

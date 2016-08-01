@@ -3,6 +3,7 @@
 
     <declare-styleable name="LunarView">
         <attr name="todayBackground" format="reference"/>
+        <attr name="checkedDayBackgroundColor" format="color"/>
         <attr name="monthBackgroundColor" format="color"/>
         <attr name="weekLabelBackgroundColor" format="color"/>
         <attr name="solarTextColor" format="color"/>
