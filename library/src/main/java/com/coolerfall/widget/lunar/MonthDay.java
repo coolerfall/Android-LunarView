@@ -38,7 +38,8 @@ public final class MonthDay implements Parcelable {
 		mIsWeekend = dayOfWeek == Calendar.SUNDAY || dayOfWeek == Calendar.SATURDAY;
 		mIsToday = isToday(mCalendar);
 
-		String lunarDay = mLunar.getLunarDay();
+		String lunarDay =
+			mLunar.getLunarDayNum() == 1 ? mLunar.getLunarMonth() + "月" : mLunar.getLunarDay();
 		String lunarHoliday = mLunar.getLunarHoliday();
 		String solarHoliday = mLunar.getSolarHolidy();
 		String holiday = TextUtils.isEmpty(lunarHoliday) ? solarHoliday : lunarHoliday;

@@ -793,6 +793,11 @@ public final class Lunar {
 		return mLunarMonth;
 	}
 
+	/**
+	 * Get lunar day in numeric.
+	 *
+	 * @return the numeric of lunar day
+	 */
 	public int getLunarDayNum() {
 		return mLunarDay;
 	}
