@@ -69,11 +69,17 @@ final class WeekLabelView extends View {
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.LINEAR_TEXT_FLAG);
 		mPaint.setTextAlign(Paint.Align.CENTER);
 		mPaint.setColor(Color.GRAY);
-		setPadding(0, 10, 0, 10);
+		int padding = dip2px(getContext(), 12);
+		setPadding(0, padding, 0, padding);
 
 		for (int i = 0; i < DAYS_IN_WEEK; i++) {
 			Region region = new Region();
 			mWeekRegion[i] = region;
 		}
+	}
+
+	public static int dip2px(Context context, float dpValue) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (dpValue * scale + 0.5f);
 	}
 }
