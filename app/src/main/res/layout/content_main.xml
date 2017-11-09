@@ -7,25 +7,29 @@
     android:background="@android:color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
 
-    <com.coolerfall.widget.lunar.LunarView
-        android:id="@+id/main_lunar_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+  <com.coolerfall.widget.lunar.LunarView
+      android:id="@+id/main_lunar_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
 
-    <TextView
-        android:id="@+id/main_tv_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:textSize="18sp"/>
+  <TextView
+      android:id="@+id/main_tv_date"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dip"
+      android:textSize="18sp"
+      />
 
-    <Button
-        android:id="@+id/main_btn_today"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:text="@string/main_btn_today"/>
+  <Button
+      android:id="@+id/main_btn_today"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dip"
+      android:text="@string/main_btn_today"
+      />
 
 </LinearLayout>
