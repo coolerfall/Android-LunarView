@@ -16,8 +16,28 @@ Use in xml:
 		android:layout_height="wrap_content"/>
 
 and you can add OnDatePickListener:
+```java
+lunarView.setOnDatePickListener(new LunarView.OnDatePickListener() {
+	@Override public void onDatePick(LunarView view, MonthDay monthDay) {
+		//do something
+	}
+});
+```
 
-	mLunarView.setOnDatePickListener(...);
+| **LunarView** ||
+|:---|:---|
+| app:todayBackground | The background of today.
+| app:checkedDayBackgroundColor | The background color of checked day by user.
+| app:monthBackgroundColor |  The background color of the whole month view.
+| app:weekLabelBackgroundColor | The background color of week label.
+| app:solarTextColor | The text color of solar day.
+| app:lunarTextColor | The text color of lunar day.
+| app:highlightColor | The text color of highlight day(such as weekend and holidays).
+| app:uncheckableColor | The text color of uncheckable day.
+| app:shouldPickOnMonthChange | Shoul invoke callback when month changed(default is true).
+
+
+You can check [LunarLite][2] to see the detail usage of LunarView.
 
 
 Gradle
@@ -28,7 +48,7 @@ Gradle
 License
 =======
 
-    Copyright (C) 2015-2016 Vincent Cheung
+    Copyright (C) 2015-2017 Vincent Cheung
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -44,3 +64,4 @@ License
 
 
 [1]: https://search.maven.org/remote_content?g=com.coolerfall&a=android-lunar-view&v=LATEST
+[2]: https://github.com/Tourbillon/LunarLite
