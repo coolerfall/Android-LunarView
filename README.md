@@ -43,7 +43,7 @@ You can check [LunarLite][2] to see the detail usage of LunarView.
 Gradle
 --------
 	
-	compile 'com.coolerfall:android-lunar-view:1.0.1'
+	compile 'com.coolerfall:android-lunar-view:1.0.2'
 
 License
 =======
