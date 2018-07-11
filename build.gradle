@@ -4,7 +4,7 @@ buildscript {
     google()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.0'
+    classpath 'com.android.tools.build:gradle:3.0.1'
   }
 }
 
@@ -21,14 +21,13 @@ task clean(type: Delete) {
 
 ext {
   compileSdkVersion = 26
-  buildToolsVersion = '26.0.2'
 
   minSdkVersion = 15
   targetSdkVersion = 26
 
-  supportV4 = 'com.android.support:support-v4:25.3.1'
-  appcompatV7 = 'com.android.support:appcompat-v7:25.3.1'
-  supportDesign = 'com.android.support:design:25.3.1'
+  supportV4 = 'com.android.support:support-v4:27.1.1'
+  appcompatV7 = 'com.android.support:appcompat-v7:27.1.1'
+  supportDesign = 'com.android.support:design:27.1.1'
 
   butterKnife = 'com.jakewharton:butterknife:8.8.1'
   butterKnifeCompiler = 'com.jakewharton:butterknife-compiler:8.8.1'
